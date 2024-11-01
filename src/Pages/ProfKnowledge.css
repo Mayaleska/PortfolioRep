@@ -1,0 +1,49 @@
+.profknowledge-container {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  border-bottom: 2px solid #0ca6a6;
+  border-top: 2px solid #0ca6a6;
+}
+
+
+/* Heading styling */
+.profknowledge-container h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+}
+.profknowledge-container h3 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #0ca6a6;
+}
+/* Paragraph styling */
+.profknowledge-container p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #666;
+  text-align: justify;
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+  .profknowledge-container {
+    padding: 1rem;
+  }
+
+  .profknowledge-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .profknowledge-container p {
+    font-size: 1rem;
+  }
+}
