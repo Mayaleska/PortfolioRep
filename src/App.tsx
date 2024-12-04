@@ -15,6 +15,7 @@ import HomePage from './Pages/HomePage'; // Import your new homepage
 import './App.css'
 import './NavBar';
 import './NavBar.css';
+import { Navigate } from 'react-router-dom';
 
 function App(){
   return (
@@ -49,6 +50,7 @@ function App(){
         <Route path="/About"element={<About/>} />
         <Route path="/Contact"element={<Contact/>} />
        
+        <Route path="*" element={<Navigate to="/HomePage" replace />} />
         
       </Routes>
       <footer className="footer"> {/* Footer section */}

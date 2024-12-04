@@ -24,29 +24,41 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background-color: #f7f7f7;
+    background-color: #f7f7f700;
   }
  /* Text Section */
 .text-section {
-    max-width: 700px;
-    /* Adjust text position */
-    text-align: left; /* Change this to 'center' or 'right' to adjust alignment */
-    margin-left: 100px; /* Example: Adjust margin to move the text further to the right */
+  position: relative; /* Ensure it stays on top of the background */
+  z-index: 2; /* Higher z-index than the background image */
+  max-width: 700px;
+  text-align: left;
+  margin-left: 100px;
+  
   }
   .text-section h1 {
     font-size: 5rem; /* Adjust main heading size here */
     color: #333;
+    z-index: 6;
+    margin-top: -10%;
   }
   .text-section p {
     font-size: 2rem; /* Adjust paragraph text size here */
     color: #666;
     margin-top: 10px;
   }
-  .image-section .profile-image {
-    max-width: 700px;
-    height: auto;
-  }
- 
 
+  /* Image Section */
+.image-section {
+  display: flex; /* Use flexbox to position elements */
+  justify-content: flex-end; /* Align the image to the right */
+  padding: 20px 40px; /* Optional padding for spacing */
+}
+
+.image-section .profile-image {
+  max-width: 700px; /* Ensure the image doesn't exceed this width */
+  height: auto; /* Maintain aspect ratio */
+  margin-top: 0%;
+  margin-bottom: 20px;
+}
 
  

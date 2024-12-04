@@ -1,70 +1,89 @@
 /* NavBar.css */
 
-/* Set a smaller width for the navbar */
-nav {
-  background-color: #333; 
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100vw; /* Change this if you want a full-width nav */
-  display: flex;
-  justify-content: center; /* Centers the navigation items */
-  align-items: center;
-  
-}
-
-/* Adjust navbar list for better spacing */
+/* Navigation Bar Container */
 .navbar {
-  list-style-type: none;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Keeps content aligned to the left, except for the list */
   align-items: center;
-  padding: 0;
-  margin: 0;
-  border-radius: 50px;
+  background-color: #5c5656; /* Background color of the navbar */
+  height: 80px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 95%; /* Makes the navbar narrower and centered */
+  margin: 10px auto; /* Centers the navbar horizontally */
+  border: 2px solid #0ca6a6; /* Adds a teal border */
+  border-radius: 50px; /* Rounded edges for the navbar */
+  padding: 0 20px;
 }
 
-/* Center the logo container and limit the image size */
+/* Logo Container */
 .logo-container {
   display: flex;
-  align-items: center;
-  margin-right: auto;
+  align-items: center; /* Center-aligns the logo vertically */
 }
 
 .logo-container img {
-  height: 60px;
-  border-radius: 50%;
-  margin-right: 500px; /* Adjusted so that the image container and nav buttons are stretched to either edge of the nav bar*/
+  height: 60px; /* Height of the circular logo */
+  width: 60px;
+  border-radius: 50%; /* Makes the image circular */
+  border: 2px solid #0ca6a6; /* Adds a border around the logo */
+  margin-right: 20px; /* Adds space between the logo and the links */
 }
 
-/* Style the navigation items */
+/* Navigation Links List */
+.navbar ul {
+  list-style-type: none;
+  display: flex;
+  gap: 50px; /* Adds spacing between the buttons */
+  margin: 0;
+  padding: 0;
+  margin-left: auto; /* Pushes the list to the right side of the navbar */
+}
+
+/* Individual List Items */
 .navbar li {
-  margin: 0 10px; /* Adjusted so the nav bar buttons are spaced out more */
+  margin-right: 20px;
+  border: 2px solid #0ca6a6; /* Adds teal border around each button */
+  border-radius: 25px; /* Rounded edges for the buttons */
+  padding: 0px 5px; /* Adjusts button size */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
+/* Navigation Links */
 .navbar a {
-  text-decoration: none;
   color: #fff;
+  text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s ease-in-out;
+  font-size: 1rem;
+  padding: 10px 15px; /* Adds padding inside the buttons */
+  display: inline-block; /* Ensures proper padding application */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* Hover Effects for Buttons */
+.navbar li:hover {
+  transform: scale(1.1); /* Enlarges the button on hover */
+  background-color: #0ca6a6; /* Optional: Adds a teal background on hover */
 }
 
 .navbar a:hover {
-  color: #0ca6a6;
+  color: #fff; /* Keeps text color consistent on hover */
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    align-items: center;
-  }
-
+/* Responsive Design */
+@media (max-width: 1440px) {
   .navbar {
-    flex-direction: column;
+    width: 100%; /* Navbar takes full width on smaller screens */
+    padding: 0 10px;
   }
 
-  .navbar li {
-    margin: spx 0;
+  .navbar ul {
+    flex-direction: column; /* Stack navbar items vertically */
+    gap: 10px; /* Reduced spacing for vertical layout */
+  }
+
+  .logo-container {
+    margin-bottom: 10px; /* Adds spacing between the logo and buttons */
   }
 }
-

@@ -1,6 +1,6 @@
 
-import ProfileImage from '../assets/HeadShot.jpg';  // Example for profile image
-import './HomePage.css'; // Link to your CSS file
+import ProfileImage from '../assets/HeadShot.jpg';  // Import for profile image
+import './HomePage.css'; // Link to CSS file
 
 
 function HomePage() {
@@ -18,14 +18,9 @@ function HomePage() {
           <img src={ProfileImage} alt="Maya Leszczynska" className="profile-image" />
         </div>
       </div>
-
-      
-    </div>
-
+      </div>
   );
 
-}
-
- 
+} 
 
 export default HomePage;

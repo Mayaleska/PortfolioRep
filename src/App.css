@@ -5,6 +5,12 @@ body, html, #root {
   box-sizing: border-box;
   font-family: 'Arial', sans-serif;
   height: 100%;
+  background-image: url('assets/BackGroundImage.jpg'); /* Specify the path to your image */
+  background-size: cover; /* Makes the background image cover the whole page */
+  background-position: center; /* Centers the background image */
+  background-attachment: fixed; /* Keeps the background image fixed while scrolling */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  
 }
 /* Ensure the app takes up the full height */
 #root > div {
@@ -23,7 +29,7 @@ body, html, #root {
   position: sticky;
   top: 0;
   z-index: 1000;
-  width: 1600px; /* Fixed width suitable for 17-inch laptops */
+  width: 90%; /* Fixed width suitable for 17-inch laptops */
   margin: 0 auto; /* Centers the navbar horizontally */
   border-bottom: 2px solid #0ca6a6;
   border-top: 2px solid #0ca6a6;
@@ -67,7 +73,7 @@ body, html, #root {
   padding: 10px 15px; /* Adds padding inside links for better clickability */
 }
 .navbar a:hover {
-  background-color: #131f1f89; /* Slightly lighter shade on hover */
+ 
   border-radius: 50px;
 }
 /* Content Area to Fill Remaining Space */
