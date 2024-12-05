@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom'; // Assuming you're using React Router
 import ProfileImage from '../assets/HeadShot.jpg'; // Import the profile image
 import './HomePage.css'; // Import the CSS file
-import HeadShot from '../assets/HeadShot.jpg';
 import Aesthetic from '../assets/Aesthetic.jpg';
 import Passion from '../assets/Passion.jpg';
 

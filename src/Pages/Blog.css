@@ -6,7 +6,7 @@
   margin: 0 auto;
   font-family: Arial, sans-serif;
   color: #333;
-  
+ 
 }
 
 /* Header styling */
@@ -154,6 +154,7 @@
   cursor: pointer;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   margin-top: 10px;
+  margin-bottom: 60px;
 }
 
 .comments button:hover {
