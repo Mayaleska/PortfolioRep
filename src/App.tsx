@@ -12,6 +12,7 @@ import Blog from './Pages/Blog';
 import VideoGallery from './Pages/VideoGallery';
 import Education from './Pages/Education';
 import HomePage from './Pages/HomePage'; // Import your new homepage
+import Chat from './Pages/Chat'
 import './App.css'
 import './NavBar';
 import './NavBar.css';
@@ -32,6 +33,7 @@ function App(){
             <li><Link to="/Gallery">Gallery</Link></li>
             <li><Link to="VideoGallery">Video Gallery</Link></li>
             <li><Link to="/Blog">Blog</Link></li>
+            <li><Link to="/Chat">Chat</Link></li>
             <li><Link to="/Education">Education</Link></li>
             <li><Link to="/ProfKnowledge">Professional Knowledge</Link></li>
             <li><Link to="/About">About</Link></li>
@@ -46,6 +48,7 @@ function App(){
         <Route path="/Gallery"element={<Gallery/>}/>
         <Route path="/VideoGallery"element={<VideoGallery/>}/>
         <Route path="/Blog"element={<Blog/>}/>
+        <Route path="/Chat"element={<Chat/>}/>
         <Route path="/Education"element={<Education/>}/>
         <Route path="/ProfKnowledge"element={<ProfKnowledge/>}/>
         <Route path="/About"element={<About/>} />
