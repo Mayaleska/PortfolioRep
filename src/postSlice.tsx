@@ -3,6 +3,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import HeadShot from './assets/HeadShot.jpg';
 import Aesthetic from './assets/Aesthetic.jpg';
 import Passion from './assets/Passion.jpg';
+import Test from './assets/Test.jpg';
+import BrainStorm from './assets/BrainStorm.jpg';
+import StoryBoard from './assets/StoryBoard.jpg';
+import Test1 from './assets/Test1.jpg';
+import Cullane from './assets/Cullane.jpg';
+import Green from './assets/Green.jpg';
+import Mocha from './assets/Mocha.jpg';
+import AfterEffects from './assets/AfterEffects.jpg';
+import Me from './assets/Me.jpg';
+import Selfie from './assets/Selfie.jpg';
 
 interface Post {
   title: string;
@@ -110,7 +120,99 @@ const initialState: PostsState = {
           Lastly I brought the edited photo into Photoshop where I adjusted the saturation and 
           brightness. I also adjusted the colour balance to give the image an orange overtone.</p>
       `,
-      image: Passion, // Replace with an image if available, e.g., NaturePhoto,
+      image: Passion, 
+      reactions: { like: 0, love: 0, wow: 0, rocket: 0, coffee: 0 },
+      comments: [],
+    },
+
+    {
+      title: "Assignment 3: Video Project",
+      date: "25 November 2024",
+      content: `
+      <img src="${BrainStorm}" alt="Maya Leszczynska" class="blog-image" />
+        <p>Our project began with the team meeting to brainstorm and discuss ideas for the product demo 
+          video. The team was initially inspired by the season at the time of development, Autumn. We began
+          discussing themes surrounding Autumn and the things that we individually enjoyed about the season.
+          This discussion brought up themes of Halloween, spookiness, autumnal nature, and the team had the
+          idea to create a product demo about a scary board game that involved a dark setting with actors
+          surrounding a table showcasing shots of the board game and a short demonstration of how the game
+         was played. This idea further developed into the concept of a mobile application. The 
+         applications purpose is to guide and inform users of abandoned and historical sites around 
+         Ireland. </p>
+         <img src="${StoryBoard}" alt="Maya Leszczynska" class="blog-image" />
+         <p>Some of the team members began developing story boards for the video and we then practiced some 
+          of the shots in the Computer Science Building and edited them together to get an idea of how the 
+          video would run and look. </p>
+          <img src="${Test}" alt="Maya Leszczynska" class="blog-image" />
+         <img src="${Test1}" alt="Maya Leszczynska" class="blog-image" />
+          <p>I told the team that I knew of an abandoned house that was open to the public near Kilkishen in 
+            Clare. The house is called Cullane House and the team decided, despite it being a 50 minute drive
+             from UL, it was the perfect location for our video. The team went out to Cullane House together
+              to have a look around, get a feel for the atmosphere and to plan and test each shot that we 
+              needed for the video project. </p>
+              <img src="${Cullane}" alt="Maya Leszczynska" class="blog-image" />
+          <p>For the Group Video Project my roles were Cinematographer and Video Editor. While I was new to
+           the role of cinematography, I had previous experience doing video editing in Adobe Premier Pro. </p>
+           <img src="${Me}" alt="Maya Leszczynska" class="blog-image" />
+        <p>The role of cinematographer was challenging and exciting. I had little previous experience using a 
+          camera for a third level project. For many of the scenes I shot, I used the rule of thirds 
+          extensively as I found it was a beginner friendly technique to ensure decent composition. I 
+          struggled with the shots that required me to move while holding the camera and found that I was 
+          telling my group we need to retake shots often as my ability to stabilise the camera was lacking.
+           However, with many phone cameras the video capture comes with a built in stabilisation feature 
+           which I found very helpful, as well as the warp stabiliser effect in premier pro which I utilised 
+           to help further stabilise some of the shots during editing. </p>
+           <p>Video Project Editing </p>
+         <p>Once the team had finished filming I went through every shot that was taken and decided which 
+        ones were the best quality, in terms of composition, camera stability, lighting, acting and 
+         camera movement. Once I had chosen the best scenes I compiled them all in Premier Pro and began 
+         editing. I got to make the decisions on the cuts in editing and decided when each scene should be
+         cut and trimmed so that we wouldn’t go over the time limit. </p>
+          <p>The first step I took was to cut any extra time on either side of each shot that so we didn’t 
+          have unnecessary footage. The team wanted the video to look like it was filmed near dusk so I 
+          added a Lumetri Colour adjustment layer in Premier Pro and adjusted the parameters to make the 
+         video appear as though it was closer to night-time. I then showed this to the team and they 
+         thought it was too dark so I further adjusted the Lumetri Colour until all team members were 
+          satisfied with how the video looked. </p>
+         <p>I spent some time utilising the Warp Stabilisation effect in Premier Pro to help stabilise 
+         and smooth any camera wobble or movement for the shots that needed it. Most of the shots that
+         were taken by hand needed a small amount of stabilistaion. Some of the scenes were taken
+         using a tripod so these ones did not need any further stabilisation. </p>
+        <p>Next, the team worked on a title screen for the video. Devikala designed the logo icon for the
+           ‘BackTrack’ app in Canva and then sent me the individual layers so I could bring them into After
+            Effects and create the Title Screen animation. </p>
+            <p>When I began work on adding the graphics for the app, made by Keelan, to the phone green screen
+               I quickly became concerned that we had used a green screen against a background of green grass.
+               <img src="${Green}" alt="Maya Leszczynska" class="blog-image" />
+                However, I ended up using After Effect’s Mocha tool to map the app graphic to the phone screen
+            in Scene 4. To achieve this, I used Mocha to map and track the phone in Keelan’s hand which
+            mostly automatically tracked it and then I had to go through the tracking data and adjust 
+            the tracked points where they weren’t mapped correctly.
+            <img src="${Mocha}" alt="Maya Leszczynska" class="blog-image" />I then created a composition in 
+           After Effects and used the phone screen tracking data from Mocha to display the graphic of
+           the ‘BackTrack’ app to show that the users had arrived at the house. I also added a layer
+           that had an image of the sky  and set it to the screen blend mode and used the same 
+            tracking data from Mocha to make a reflection of the sky on the phone screen.
+            <img src="${AfterEffects}" alt="Maya Leszczynska" class="blog-image" />
+             For Scene 4
+           I also made the location pin graphic in Procreate and then animated it in After Effects
+            and brought it into Premier Pro and I animated an image of footsteps in Procreate for 
+            the transition between scene 2 and 3. </p>
+            <p>For Scene 6 I added an echo effect to the audio as the camera was further away from the actors
+               and they were inside the stone building. I also added an echo when Devi says; “you there”, at 
+               the end of scene 5 when devi enters the doorway. For the credits scene I used the Ultra Key 
+               effect in Premier Pro to display the animation of the app logo and credits roll on the phone screen, 
+               which I made in After Effects. 
+        <p>I sourced all the sound effects and music from Pixabay and Youtube Studio and compiled them in
+           After Effects for the video project. Devi and Keelan did the voice over which they sent to me and
+            I added it to the premier pro project doing my best to match the audio that I was given to the 
+            scenes that we had already shot. In the end I used H.265(HVEC) for the format with a bitrate of
+             1.4. Unfortunately, this killed the quality of the video but after extensive research this 
+             seemed to be the only way to reduce the file size from 522MB to 24MB in line with the assignment 
+             brief. 
+             <img src="${Selfie}" alt="Maya Leszczynska" class="blog-image" />
+      `,
+      image: null, 
       reactions: { like: 0, love: 0, wow: 0, rocket: 0, coffee: 0 },
       comments: [],
     },

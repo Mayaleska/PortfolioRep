@@ -59,6 +59,10 @@
   height: auto; /* Maintain aspect ratio */
   margin-top: 0%;
   margin-bottom: 20px;
+    /* Add background shadow */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adjust values as needed */
+    border-radius: 10px; /* Optional: Add rounded corners */
+  
 }
 
  

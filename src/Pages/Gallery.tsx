@@ -4,25 +4,38 @@ import HeadShot from '../assets/HeadShot.jpg';
 import Aesthetic from '../assets/Aesthetic.jpg';
 import Passion from '../assets/Passion.jpg';
 
-
-interface Image { /* Created an Image interface to define the structure of the image objects. */
+interface Image {
   src: string;
   title: string;
+  reactions: { like: number; love: number; wow: number };
+  comments: string[];
 }
 
-/* Added code to add a title to each image in the Image Gallery using ChatGPT for help */
-
-
 const ImageGallery: React.FC = () => {
-  const [index, setIndex] = useState(0);   // useState hook to manage the current index of the displayed image
+  const [index, setIndex] = useState(0); // Current image index
+  const [comment, setComment] = useState<string>(''); // Current comment input
 
-  // An array of image URLs for the gallery
-  // Define the images array with objects containing src and title
-  const images: Image[] = [
-    { src: HeadShot, title: 'Formal Head Shot' }, //added the capability of dsiplaying a title under each image in the gallery
-    { src: Aesthetic, title: 'Aesthetic Landscape' },
-    { src: Passion, title: 'My Passion in Life' },
-  ];
+  // Define the images array with reactions and comments
+  const [images, setImages] = useState<Image[]>([
+    {
+      src: HeadShot,
+      title: 'Formal Head Shot',
+      reactions: { like: 0, love: 0, wow: 0 },
+      comments: [],
+    },
+    {
+      src: Aesthetic,
+      title: 'Aesthetic Landscape',
+      reactions: { like: 0, love: 0, wow: 0 },
+      comments: [],
+    },
+    {
+      src: Passion,
+      title: 'My Passion in Life',
+      reactions: { like: 0, love: 0, wow: 0 },
+      comments: [],
+    },
+  ]);
 
   const goToNextImage = () => {
     setIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -32,7 +45,29 @@ const ImageGallery: React.FC = () => {
     setIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
 
-  /* controls for going through the image gallery using keyboard arrow keys */
+  // Handle reactions
+  const handleReaction = (reaction: keyof Image['reactions']) => {
+    setImages((prevImages) =>
+      prevImages.map((img, i) =>
+        i === index
+          ? { ...img, reactions: { ...img.reactions, [reaction]: img.reactions[reaction] + 1 } }
+          : img
+      )
+    );
+  };
+
+  // Handle comments
+  const handleAddComment = () => {
+    if (!comment.trim()) return;
+    setImages((prevImages) =>
+      prevImages.map((img, i) =>
+        i === index ? { ...img, comments: [...img.comments, comment] } : img
+      )
+    );
+    setComment('');
+  };
+
+  // Keyboard navigation
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'ArrowRight') {
       goToNextImage();
@@ -60,6 +95,32 @@ const ImageGallery: React.FC = () => {
         className="gallery-image"
       />
       <h2 className="image-title">{images[index].title}</h2>
+
+      {/* Reactions */}
+      <div className="reactions">
+        <button onClick={() => handleReaction('like')}>👍 {images[index].reactions.like}</button>
+        <button onClick={() => handleReaction('love')}>❤️ {images[index].reactions.love}</button>
+        <button onClick={() => handleReaction('wow')}>😮 {images[index].reactions.wow}</button>
+      </div>
+
+      {/* Comments */}
+      <div className="comments">
+        <h3>Comments:</h3>
+        <div className="comment-list">
+          {images[index].comments.map((c, i) => (
+            <p key={i}>{c}</p>
+          ))}
+        </div>
+        <input
+          type="text"
+          placeholder="Write a comment..."
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+        />
+        <button onClick={handleAddComment}>Comment</button>
+      </div>
+
+      {/* Navigation Buttons */}
       <div className="gallery-buttons">
         <button onClick={goToPreviousImage} className="gallery-button">
           Previous

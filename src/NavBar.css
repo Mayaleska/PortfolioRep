@@ -28,7 +28,7 @@
   width: 60px;
   border-radius: 50%; /* Makes the image circular */
   border: 2px solid #0ca6a6; /* Adds a border around the logo */
-  margin-right: 20px; /* Adds space between the logo and the links */
+  margin-right: 58vh; /* Adds space between the logo and the links */
 }
 
 /* Navigation Links List */
@@ -39,6 +39,7 @@
   margin: 0;
   padding: 0;
   margin-left: auto; /* Pushes the list to the right side of the navbar */
+  align-items: left;
 }
 
 /* Individual List Items */
