@@ -17,6 +17,7 @@ import './NavBar';
 import './NavBar.css';
 import { Navigate } from 'react-router-dom';
 
+
 function App(){
   return (
     <div>
