@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { io } from 'socket.io-client'; // Use named import for `io`
+import { io } from 'socket.io-client';
 import './Chat.css';
 
 // Establish a connection to the server
-const socket = io('http://localhost:5174'); // Use `io` directly without `.connect`
+const socket = io('http://localhost:5174');
 
 interface ChatMessage {
   message: string;
-  // You can extend this interface with additional properties, e.g., `sender`, `timestamp`
 }
 
 const Chat: React.FC = () => {
   const [message, setMessage] = useState<string>(''); // State for the current message input
-  const [chat, setChat] = useState<ChatMessage[]>([]); // State for the list of chat messages
+  const [chat, setChat] = useState<ChatMessage[]>(() => {
+    // Load chat messages from localStorage
+    const savedChat = localStorage.getItem('chatMessages');
+    return savedChat ? JSON.parse(savedChat) : [];
+  });
+
+  // Save chat messages to localStorage whenever the chat state changes
+  useEffect(() => {
+    localStorage.setItem('chatMessages', JSON.stringify(chat));
+  }, [chat]);
 
   // Function to send a chat message
   const sendChat = (e: React.FormEvent<HTMLFormElement>) => {
@@ -20,7 +28,6 @@ const Chat: React.FC = () => {
 
     if (!message.trim()) return; // Prevent empty messages from being sent
 
-    // Create a chat message object
     const chatMessage: ChatMessage = { message };
 
     // Emit the message to the server
@@ -50,7 +57,10 @@ const Chat: React.FC = () => {
       <div className="chat-header">Chat</div>
       <div className="chat-messages">
         {chat.map((payload, index) => (
-          <div key={index} className={`chat-message ${payload.message.startsWith('You:') ? 'sent' : ''}`}>
+          <div
+            key={index}
+            className={`chat-message ${payload.message.startsWith('You:') ? 'sent' : ''}`}
+          >
             {payload.message}
           </div>
         ))}
