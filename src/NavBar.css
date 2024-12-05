@@ -1,90 +1,112 @@
-/* NavBar.css */
-
-/* Navigation Bar Container */
+/* Navigation Bar Styles */
 .navbar {
   display: flex;
-  justify-content: flex-start; /* Keeps content aligned to the left, except for the list */
+  justify-content: space-between; /* Keeps the logo on the left and buttons on the right */
   align-items: center;
-  background-color: #5c5656; /* Background color of the navbar */
-  height: 80px;
+  background-color: #5c5656;
+  height: 10vh; /* Scales height based on the viewport height */
   position: sticky;
   top: 0;
   z-index: 1000;
-  width: 95%; /* Makes the navbar narrower and centered */
-  margin: 10px auto; /* Centers the navbar horizontally */
-  border: 2px solid #0ca6a6; /* Adds a teal border */
-  border-radius: 50px; /* Rounded edges for the navbar */
-  padding: 0 20px;
+  width: 95%; /* Centers the navbar with relative width */
+  margin: 0 auto; /* Centers the navbar horizontally */
+  margin-top: 1vh;
+  border-radius: 50px;
+  border-bottom: 0.2vh solid #0ca6a6;
+  border-top: 0.2vh solid #0ca6a6;
+  padding: 0 2vw; /* Adds horizontal padding that scales with the screen width */
 }
 
-/* Logo Container */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
 .logo-container {
   display: flex;
-  align-items: center; /* Center-aligns the logo vertically */
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 7vw;
 }
 
 .logo-container img {
-  height: 60px; /* Height of the circular logo */
-  width: 60px;
-  border-radius: 50%; /* Makes the image circular */
-  border: 2px solid #0ca6a6; /* Adds a border around the logo */
-  margin-right: 58vh; /* Adds space between the logo and the links */
+  height: 7vh; /* Reduced logo height for smaller scaling */
+  width: auto;
+  border-radius: 50%; /* Keeps the logo circular regardless of size */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation for hover effects */
 }
 
-/* Navigation Links List */
+.logo-container img:hover {
+  transform: scale(1.1); /* Slightly enlarges the logo */
+  box-shadow: 0 0 15px rgba(12, 166, 166, 0.8), 0 0 30px rgba(12, 166, 166, 0.6); /* Glow effect in teal color */
+  z-index: 10; /* Ensures it pops above other elements */
+}
+
 .navbar ul {
   list-style-type: none;
   display: flex;
-  gap: 50px; /* Adds spacing between the buttons */
   margin: 0;
   padding: 0;
-  margin-left: auto; /* Pushes the list to the right side of the navbar */
-  align-items: left;
+  justify-content: flex-end; /* Aligns buttons to the far right */
+  flex-grow: 1; /* Pushes buttons to the right */
 }
 
-/* Individual List Items */
 .navbar li {
-  margin-right: 20px;
-  border: 2px solid #0ca6a6; /* Adds teal border around each button */
-  border-radius: 25px; /* Rounded edges for the buttons */
-  padding: 0px 5px; /* Adjusts button size */
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border: 0.15vh solid #0ca6a6; /* Smaller border size */
+  border-radius: 50px; /* Consistent border radius */
+  padding: 0.5vh 1vw; /* Reduced padding for smaller buttons */
+  white-space: nowrap; /* Prevents text from wrapping to the next line */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition for hover effects */
+  background-color: transparent; /* Default transparent background */
+  margin-right: 1vw; /* Adds explicit space between buttons */
 }
 
-/* Navigation Links */
+.navbar li:last-child {
+  margin-right: 0; /* Removes the margin on the last button */
+}
+
 .navbar a {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1rem;
-  padding: 10px 15px; /* Adds padding inside the buttons */
-  display: inline-block; /* Ensures proper padding application */
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  font-size: .8vw; /* Reduced font size for smaller text */
+  transition: color 0.3s ease-in-out;
+  padding: 0.5vh 1vw; /* Adjusted padding for smaller buttons */
+  display: inline-block; /* Ensures the padding applies consistently */
+  text-align: center; /* Centers text within the button */
 }
 
-/* Hover Effects for Buttons */
 .navbar li:hover {
-  transform: scale(1.1); /* Enlarges the button on hover */
-  background-color: #0ca6a6; /* Optional: Adds a teal background on hover */
+  transform: scale(1.1); /* Slightly enlarges the button on hover */
+  box-shadow: 0 2px 1vh rgba(0, 0, 0, 0.3); /* Adjusted shadow size for smaller buttons */
+  background-color: #0ca6a6; /* Matches the border color */
+  border-color: #0ca6a6; /* Changes border color on hover */
 }
 
 .navbar a:hover {
-  color: #fff; /* Keeps text color consistent on hover */
+  color: #ffffff; /* Ensures text remains visible on hover */
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    align-items: center;
-  }
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+  .logo-container img {
+    height: 5.5vh; /* Scales down logo for smaller screens */
   }
 
   .navbar ul {
-    flex-direction: column; /* Stack navbar items vertically */
-    gap: 10px; /* Reduced spacing for vertical layout */
+    gap: 0; /* Disables gap for smaller screens (margin is used) */
   }
 
-  .logo-container {
-    margin-bottom: 10px; /* Adds spacing between the logo and buttons */
+  .navbar li {
+    padding: 0.6vh 1vw; /* Adjusts button padding for smaller screens */
+    margin-right: 0.8vw; /* Adjusted space for smaller screens */
   }
+
+  .navbar li:last-child {
+    margin-right: 0; /* Ensures no extra space for the last button */
+  }
+
+  .navbar a {
+    font-size: 0.9rem; /* Adjusted font size for readability on small screens */
+  }
+}

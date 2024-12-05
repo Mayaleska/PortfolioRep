@@ -19,17 +19,19 @@ import './NavBar.css';
 import { Navigate } from 'react-router-dom';
 
 
-function App(){
+function App() {
   return (
     <div>
       <nav>
         <ul className="navbar">
-          <div className='navbar-logo'>
-            <div className='logo-container'>
-              <img src={HeadShot} alt='Logo'/>
+          <div className="navbar-logo">
+            <div className="logo-container">
+              {/* Wrap the logo image in a Link component */}
+              <Link to="/HomePage">
+                <img src={HeadShot} alt="Logo" /> {/*clicking on the logo image will now bring you to the home page*/}
+              </Link>
             </div>
-            { /* Links displayed on the nav bar */ }
-            <li><Link to="/HomePage">Home</Link></li>
+            {/* Links displayed on the nav bar */}
             <li><Link to="/Gallery">Gallery</Link></li>
             <li><Link to="VideoGallery">Video Gallery</Link></li>
             <li><Link to="/Blog">Blog</Link></li>
@@ -38,30 +40,25 @@ function App(){
             <li><Link to="/ProfKnowledge">Professional Knowledge</Link></li>
             <li><Link to="/About">About</Link></li>
             <li><Link to="/Contact">Contact</Link></li>
-            
-            
           </div>
         </ul>
       </nav>
-      <Routes> { /* Routes for each page on the nav bar */ }
-        <Route path="/HomePage"element={<HomePage/>}/>
-        <Route path="/Gallery"element={<Gallery/>}/>
-        <Route path="/VideoGallery"element={<VideoGallery/>}/>
-        <Route path="/Blog"element={<Blog/>}/>
-        <Route path="/Chat"element={<Chat/>}/>
-        <Route path="/Education"element={<Education/>}/>
-        <Route path="/ProfKnowledge"element={<ProfKnowledge/>}/>
-        <Route path="/About"element={<About/>} />
-        <Route path="/Contact"element={<Contact/>} />
-       
+      <Routes> {/* Routes for each page on the nav bar */}
+        <Route path="/HomePage" element={<HomePage />} />
+        <Route path="/Gallery" element={<Gallery />} />
+        <Route path="/VideoGallery" element={<VideoGallery />} />
+        <Route path="/Blog" element={<Blog />} />
+        <Route path="/Chat" element={<Chat />} />
+        <Route path="/Education" element={<Education />} />
+        <Route path="/ProfKnowledge" element={<ProfKnowledge />} />
+        <Route path="/About" element={<About />} />
+        <Route path="/Contact" element={<Contact />} />
         <Route path="*" element={<Navigate to="/HomePage" replace />} />
-        
       </Routes>
       <footer className="footer"> {/* Footer section */}
-        <p>&copy; {new Date().getFullYear()} Maya Leszczynska. All Rights Reserved.</p> {/* Dynamic copyright year */}
+        <p>&copy; {new Date().getFullYear()} Maya Leszczynska. All Rights Reserved.</p>
       </footer>
     </div>
   );
 }
-export default App
-
+export default App;

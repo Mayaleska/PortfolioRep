@@ -1,65 +1,78 @@
-/* Gallery.css */
-
 .gallery-container {
-    max-width: 60%;
-    margin: 0 auto;
-    margin-top: 20px;
-    padding: 20px;
-    text-align: center;
-    background-color: #f5f5f5;
-    border-radius: 50px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-bottom: 2px solid #0ca6a6;
-    border-top: 2px solid #0ca6a6;
-  }
-  
-  .gallery-header {
-    margin-bottom: 20px;
-  }
-  
-  .gallery-header h1 {
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .gallery-header p {
-    color: #555;
-    font-size: 1rem;
-  }
-  
-  .gallery-image {
-    width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-  }
-  
-  .gallery-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  
-  .gallery-button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .gallery-button:hover {
-    background-color: #555;
-  }
+  max-width: 50%;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 200px;
+  padding: 20px;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-radius: 50px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid #0ca6a6;
+  border-top: 2px solid #0ca6a6;
+}
 
-  /* Styling for Image title */
-  .image-title {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 1.5rem; /* Adjust as needed */
-  }
+.gallery-header {
+  margin-bottom: 20px;
+}
+
+.gallery-header h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.gallery-header p {
+  color: #555;
+  font-size: 1rem;
+}
+
+/* Fixed Image Container */
+.image-container {
+  width: 100%; /* Ensures container width scales responsively */
+  height: 300px; /* Set a fixed height for the container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Ensures content outside the container is hidden */
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #eaeaea; /* Optional background color in case images take time to load */
+}
+
+.gallery-image {
+  width: 100%; /* Image takes the full width of the container */
+  height: 100%; /* Image takes the full height of the container */
+  object-fit: cover; /* Ensures image scales and crops proportionally */
+  border-radius: 5px; /* Keeps border radius consistent */
+}
+
+.gallery-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.gallery-button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 40px;
+}
+
+.gallery-button:hover {
+  background-color: #555;
+}
+
+/* Styling for Image title */
+.image-title {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1.5rem; /* Adjust as needed */
+  color: #333;
+}
