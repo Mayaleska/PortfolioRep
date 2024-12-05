@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './VideoGallery.css';
 import BackTrack from '../assets/BackTrackVideoFinal.mp4';
 
@@ -9,18 +9,27 @@ interface Video {
 }
 
 function VideoGallery() {
-  // Initialize the state for videos
-  const [videos, setVideos] = useState<Video[]>([
+  const initialVideos: Video[] = [
     {
       src: BackTrack,
       reactions: { like: 0, love: 0, wow: 0 },
       comments: [],
     },
     // Add more videos as needed
-  ]);
+  ];
+
+  const [videos, setVideos] = useState<Video[]>(() => {
+    const savedVideos = localStorage.getItem('videoGallery');
+    return savedVideos ? JSON.parse(savedVideos) : initialVideos;
+  });
 
   const [index, setIndex] = useState(0); // Current video index
   const [comment, setComment] = useState<string>(''); // Current comment input
+
+  // Save videos to localStorage
+  const saveVideosToLocalStorage = (updatedVideos: Video[]) => {
+    localStorage.setItem('videoGallery', JSON.stringify(updatedVideos));
+  };
 
   // Navigate to the next video
   function goToNextVideo() {
@@ -34,32 +43,41 @@ function VideoGallery() {
 
   // Handle reactions
   const handleReaction = (reaction: keyof Video['reactions']) => {
-    setVideos((prevVideos) =>
-      prevVideos.map((video, i) =>
+    setVideos((prevVideos) => {
+      const updatedVideos = prevVideos.map((video, i) =>
         i === index
           ? { ...video, reactions: { ...video.reactions, [reaction]: video.reactions[reaction] + 1 } }
           : video
-      )
-    );
+      );
+      saveVideosToLocalStorage(updatedVideos);
+      return updatedVideos;
+    });
   };
 
   // Handle comments
   const handleAddComment = () => {
     if (!comment.trim()) return;
-    setVideos((prevVideos) =>
-      prevVideos.map((video, i) =>
+    setVideos((prevVideos) => {
+      const updatedVideos = prevVideos.map((video, i) =>
         i === index ? { ...video, comments: [...video.comments, comment] } : video
-      )
-    );
+      );
+      saveVideosToLocalStorage(updatedVideos);
+      return updatedVideos;
+    });
     setComment('');
   };
+
+  useEffect(() => {
+    // Sync videos with localStorage whenever they change
+    saveVideosToLocalStorage(videos);
+  }, [videos]);
 
   return (
     <div className="video-gallery-container">
       <header className="video-gallery-header">
         <h1>Video Gallery</h1>
       </header>
-      
+
       {/* Display the current video */}
       <video
         src={videos[index].src}
@@ -67,7 +85,7 @@ function VideoGallery() {
         className="video-player"
         key={videos[index].src} // Ensures video reloads when changing
       />
-      
+
       {/* Reactions */}
       <div className="reactions">
         <button onClick={() => handleReaction('like')}>👍 {videos[index].reactions.like}</button>

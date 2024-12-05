@@ -20,23 +20,24 @@ interface Post {
 }
 
 const Blog: React.FC = () => {
-  const posts = useSelector((state: RootState) => state.posts.posts);
+  const posts = useSelector((state: RootState) => state.posts);
   const dispatch = useDispatch<AppDispatch>();
 
   const [newPost, setNewPost] = useState({ title: '', content: '', image: null as string | null });
-  const [comment, setComment] = useState<string>('');
+  const [comments, setComments] = useState<Record<number, string>>({}); // Track comments per post
 
   const handlePostSubmit = () => {
     if (!newPost.title.trim() || !newPost.content.trim()) return;
 
-    // Add missing fields: reactions and comments
+    console.log('New Post Data:', newPost);
+
     dispatch(
       addPost({
         title: newPost.title,
         content: newPost.content,
         image: newPost.image,
-        reactions: { like: 0, love: 0, wow: 0, rocket: 0, coffee: 0 }, // Default reactions
-        comments: [], // Default empty comments
+        reactions: { like: 0, love: 0, wow: 0, rocket: 0, coffee: 0 },
+        comments: [],
       })
     );
 
@@ -47,10 +48,16 @@ const Blog: React.FC = () => {
     dispatch(addReaction({ index, reaction }));
   };
 
-  const handleComment = (index: number) => {
-    if (!comment.trim()) return;
+  const handleCommentChange = (index: number, value: string) => {
+    setComments({ ...comments, [index]: value });
+  };
+
+  const handleCommentSubmit = (index: number) => {
+    const comment = comments[index];
+    if (!comment?.trim()) return;
+
     dispatch(addComment({ index, comment }));
-    setComment('');
+    setComments({ ...comments, [index]: '' }); // Clear the comment for the current post
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -84,12 +91,12 @@ const Blog: React.FC = () => {
 
       {/* Display Blog Posts */}
       {posts.map((post, index) => (
-
         <div key={index} className="blog-content">
           <h2>{post.title}</h2>
           <p>{post.date}</p>
           {post.image && <img src={post.image} alt="Blog Post" className="blog-image" />}
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
+
           {/* Reaction Buttons */}
           <div className="reactions">
             <button onClick={() => handleReaction(index, 'like')}>👍 {post.reactions.like}</button>
@@ -98,6 +105,7 @@ const Blog: React.FC = () => {
             <button onClick={() => handleReaction(index, 'rocket')}>🚀 {post.reactions.rocket}</button>
             <button onClick={() => handleReaction(index, 'coffee')}>☕ {post.reactions.coffee}</button>
           </div>
+
           {/* Comments */}
           <div className="comments">
             <h3>Comments:</h3>
@@ -107,15 +115,14 @@ const Blog: React.FC = () => {
             <input
               type="text"
               placeholder="Write a comment..."
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
+              value={comments[index] || ''}
+              onChange={(e) => handleCommentChange(index, e.target.value)}
             />
-            <button onClick={() => handleComment(index)}>Comment</button>
+            <button onClick={() => handleCommentSubmit(index)}>Comment</button>
           </div>
         </div>
       ))}
     </div>
-    
   );
 };
 

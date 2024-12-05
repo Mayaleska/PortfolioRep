@@ -12,11 +12,7 @@ interface Image {
 }
 
 const ImageGallery: React.FC = () => {
-  const [index, setIndex] = useState(0); // Current image index
-  const [comment, setComment] = useState<string>(''); // Current comment input
-
-  // Define the images array with reactions and comments
-  const [images, setImages] = useState<Image[]>([
+  const initialImages: Image[] = [
     {
       src: HeadShot,
       title: 'Formal Head Shot',
@@ -35,7 +31,20 @@ const ImageGallery: React.FC = () => {
       reactions: { like: 0, love: 0, wow: 0 },
       comments: [],
     },
-  ]);
+  ];
+
+  const [index, setIndex] = useState(0); // Current image index
+  const [comment, setComment] = useState<string>(''); // Current comment input
+
+  // Load saved images from localStorage or initialize with defaults
+  const [images, setImages] = useState<Image[]>(() => {
+    const savedImages = localStorage.getItem('galleryImages');
+    return savedImages ? JSON.parse(savedImages) : initialImages;
+  });
+
+  const saveImagesToLocalStorage = (updatedImages: Image[]) => {
+    localStorage.setItem('galleryImages', JSON.stringify(updatedImages));
+  };
 
   const goToNextImage = () => {
     setIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -47,23 +56,27 @@ const ImageGallery: React.FC = () => {
 
   // Handle reactions
   const handleReaction = (reaction: keyof Image['reactions']) => {
-    setImages((prevImages) =>
-      prevImages.map((img, i) =>
+    setImages((prevImages) => {
+      const updatedImages = prevImages.map((img, i) =>
         i === index
           ? { ...img, reactions: { ...img.reactions, [reaction]: img.reactions[reaction] + 1 } }
           : img
-      )
-    );
+      );
+      saveImagesToLocalStorage(updatedImages);
+      return updatedImages;
+    });
   };
 
   // Handle comments
   const handleAddComment = () => {
     if (!comment.trim()) return;
-    setImages((prevImages) =>
-      prevImages.map((img, i) =>
+    setImages((prevImages) => {
+      const updatedImages = prevImages.map((img, i) =>
         i === index ? { ...img, comments: [...img.comments, comment] } : img
-      )
-    );
+      );
+      saveImagesToLocalStorage(updatedImages);
+      return updatedImages;
+    });
     setComment('');
   };
 
